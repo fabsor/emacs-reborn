@@ -76,7 +76,7 @@
 (setq inhibit-startup-screen t)
 
 ;; No toolbar
-(tool-bar-mode -1)
+;; (tool-bar-mode -1)
 
 ;; No scroll bars
 (custom-set-variables
