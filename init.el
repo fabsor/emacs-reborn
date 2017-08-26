@@ -73,6 +73,8 @@
 (require 'windmove)
 (windmove-default-keybindings)
 
+(setq inhibit-startup-screen t)
+
 ;; No toolbar
 (tool-bar-mode -1)
 
