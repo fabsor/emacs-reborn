@@ -1,6 +1,6 @@
 #!/bin/bash
 pushd /tmp
-curl https://github.com/fabsor/mini-emacs/archive/master.tar.gz | tar -zxv
+https://codeload.github.com/fabsor/mini-emacs/tar.gz/master | tar -zxv
 popd;
 pushd $HOME
 if [ -d .emacs.d ]; then
