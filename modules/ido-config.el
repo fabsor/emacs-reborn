@@ -13,4 +13,4 @@
 ;; disable ido faces to see flx highlights
 (setq ido-use-faces nil)
 
-(provide 'mini-ido)
+(provide 'ido-config)

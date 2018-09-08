@@ -1,3 +1,20 @@
+(require 'package)
+
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (proto (if no-ssl "http" "https")))
+  ;; Comment/uncomment these two lines to enable/disable MELPA and MELPA Stable as desired
+  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+  ;;(add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
+  (when (< emacs-major-version 24)
+    ;; For important compatibility libraries like cl-lib
+    (add-to-list 'package-archives '("gnu" . (concat proto "://elpa.gnu.org/packages/")))))
+(package-initialize)
+
+(dolist (package '(use-package))
+   (unless (package-installed-p package)
+     (package-install package)))
+
 (defvar base-dir (file-name-directory load-file-name)
   "The root dir of the Emacs config.")
 
@@ -75,11 +92,10 @@
 
 (setq inhibit-startup-screen t)
 
+(require 'ido-config)
+(require 'magit-config)
+(require 'web-config)
+(require 'projectile-config)
+
 ;; No toolbar
-;; (tool-bar-mode -1)
-
-;; No scroll bars
-(custom-set-variables
- '(scroll-bar-mode nil))
-
-(require 'mini-ido)
+(tool-bar-mode -1)
