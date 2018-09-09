@@ -104,7 +104,10 @@
 (require 'web-config)
 (require 'projectile-config)
 (require 'start-project)
+(require 'theme-config)
 
 (server-start)
 ;; No toolbar
 (tool-bar-mode -1)
+;; No scrollbar
+(scroll-bar-mode -1)
