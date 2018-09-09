@@ -111,3 +111,10 @@
 (tool-bar-mode -1)
 ;; No scrollbar
 (scroll-bar-mode -1)
+
+(setq mac-option-key-is-meta nil)
+(setq mac-command-key-is-meta t)
+(setq mac-command-modifier 'meta)
+(setq mac-option-modifier nil)
+
+(ansi-term "/bin/zsh" "terminal")
