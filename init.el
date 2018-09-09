@@ -11,9 +11,16 @@
     (add-to-list 'package-archives '("gnu" . (concat proto "://elpa.gnu.org/packages/")))))
 (package-initialize)
 
-(dolist (package '(use-package))
-   (unless (package-installed-p package)
-     (package-install package)))
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+
+(dolist (p '(use-package))
+  (when (not (package-installed-p p))
+    (package-install p)))
+;; (dolist (package '(use-package)
+;;   (unless (package-installed-p package)
+;;     (package-install package)))
 
 (defvar base-dir (file-name-directory load-file-name)
   "The root dir of the Emacs config.")
