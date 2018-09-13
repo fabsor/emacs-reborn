@@ -99,7 +99,7 @@
 
 (setq inhibit-startup-screen t)
 
-(require 'ido-config)
+(require 'ivy-config)
 (require 'magit-config)
 (require 'web-config)
 (require 'projectile-config)
@@ -111,10 +111,12 @@
 (tool-bar-mode -1)
 ;; No scrollbar
 (scroll-bar-mode -1)
+;; No menu bar
+(menu-bar-mode -1)
+
+(setq shell-command-switch "-ic")
 
 (setq mac-option-key-is-meta nil)
 (setq mac-command-key-is-meta t)
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier nil)
-
-(ansi-term "/bin/zsh" "terminal")
