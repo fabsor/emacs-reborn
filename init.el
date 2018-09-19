@@ -105,6 +105,8 @@
 (require 'projectile-config)
 (require 'start-project)
 (require 'theme-config)
+(require 'editor-config)
+(require 'drupal-config)
 
 (server-start)
 ;; No toolbar
