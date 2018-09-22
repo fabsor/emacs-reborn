@@ -107,7 +107,6 @@
 (require 'theme-config)
 (require 'editor-config)
 (require 'drupal-config)
-
 (server-start)
 ;; No toolbar
 (tool-bar-mode -1)
@@ -115,6 +114,10 @@
 (scroll-bar-mode -1)
 ;; No menu bar
 (menu-bar-mode -1)
+
+(setq split-height-threshold nil)
+(setq split-width-threshold 0)
+(setq pop-up-windows nil)
 
 (setq shell-command-switch "-ic")
 
@@ -125,4 +128,3 @@
 
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . dark))
-
