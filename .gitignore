@@ -3,4 +3,6 @@ savehist
 elpa
 ido.hist
 tramp
+recentf
+session*
 
