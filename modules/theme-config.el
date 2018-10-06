@@ -1,10 +1,10 @@
 (require 'use-package)
 
-(use-package material-theme
+(use-package dracula-theme
   :ensure t
   :config
   (when (display-graphic-p)
-      (load-theme 'material t)
+      (load-theme 'dracula t)
   ))
 (provide 'theme-config)
 
