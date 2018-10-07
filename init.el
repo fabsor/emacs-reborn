@@ -110,6 +110,7 @@
 (require 'editor-config)
 (require 'drupal-config)
 (require 'lang-config)
+(require 'lsp-config)
 
 (server-start)
 ;; No toolbar
@@ -150,5 +151,4 @@
  ;; If there is more than one, they won't work right.
  )
 
-(provide init)
 ;;; Init ends here
