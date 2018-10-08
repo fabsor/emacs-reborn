@@ -1,3 +1,8 @@
+;;; Package --- Emacs Summary
+;;; Commentary:
+;;; Emacs init file
+
+;;; Code:
 (require 'package)
 
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
@@ -18,9 +23,6 @@
 (dolist (p '(use-package))
   (when (not (package-installed-p p))
     (package-install p)))
-;; (dolist (package '(use-package)
-;;   (unless (package-installed-p package)
-;;     (package-install package)))
 
 (defvar base-dir (file-name-directory load-file-name)
   "The root dir of the Emacs config.")
@@ -108,6 +110,7 @@
 (require 'editor-config)
 (require 'drupal-config)
 (require 'lang-config)
+
 (server-start)
 ;; No toolbar
 (tool-bar-mode -1)
@@ -139,10 +142,12 @@
     ("0c32e4f0789f567a560be625f239ee9ec651e524e46a4708eb4aba3b9cdc89c5" default)))
  '(package-selected-packages
    (quote
-    (dockerfile-mode yaml-mode zenburn-theme web-mode use-package projectile-ripgrep php-mode material-theme magit flycheck editorconfig dracula-theme counsel company))))
+    (lsp-php lsp-ui lsp-mode dockerfile-mode yaml-mode zenburn-theme web-mode use-package projectile-ripgrep php-mode material-theme magit flycheck editorconfig dracula-theme counsel company))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;;; Init ends here
