@@ -1,10 +1,10 @@
 (require 'use-package)
 
-(use-package dracula-theme
+(use-package gruvbox-theme
   :ensure t
   :config
   (when (display-graphic-p)
-      (load-theme 'dracula t)
+      (load-theme 'gruvbox-dark-medium t)
   ))
 (provide 'theme-config)
 
