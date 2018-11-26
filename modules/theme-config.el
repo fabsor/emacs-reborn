@@ -4,7 +4,7 @@
   :ensure t
   :config
   (when (display-graphic-p)
-      (load-theme 'gruvbox-dark-medium t)
+      (load-theme 'gruvbox-dark-hard t)
   ))
 (provide 'theme-config)
 

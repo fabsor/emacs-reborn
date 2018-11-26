@@ -11,6 +11,18 @@
   (add-to-list 'auto-mode-alist '("\\.profile$" . php-mode))
   (add-to-list 'auto-mode-alist '("\\.engine$" . php-mode))
   )
+
+(use-package geben
+  :ensure t
+  :bind
+  ("C-x t" . geben-add-current-line-to-predefined-breakpoints)
+  
+  :config
+  (setq geben-path-mappings '(("/home/fabsor/projects/leanlab-docker" "/app")))
+  (setq geben-dbgp-default-port 9000)
+  (setq geben-pause-at-entry-line nil)
+  (setq geben-show-redirect-buffers nil)
+  )
   
 (use-package web-mode
   :ensure t
@@ -27,6 +39,8 @@
   (setq web-mode-css-indent-offset 2)
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-enable-auto-quoting nil)
+  (setq web-mode-jsx-depth-faces nil)
+  (setq web-mode-enable-block-face nil)
   )
   (add-hook 'web-mode-hook  'my-web-mode-hook)
 
@@ -35,7 +49,7 @@
 (use-package tide
   :ensure t
   :init
-  (setq tide-node-executable "/usr/local/bin/node")
+  ;; (setq tide-node-executable "/usr/local/bin/node")
   :config
   (defun setup-tide-mode ()
     (interactive)
@@ -53,6 +67,11 @@
             (lambda ()
               (when (string-equal "tsx" (file-name-extension buffer-file-name))
                 (setup-tide-mode))))
+  (add-hook 'web-mode-hook
+            (lambda ()
+              (when (string-equal "ts" (file-name-extension buffer-file-name))
+                (setup-tide-mode))))
+  
   ;; enable typescript-tslint checker
   (flycheck-add-mode 'typescript-tslint 'web-mode)
   ;; aligns annotation to the right hand side
