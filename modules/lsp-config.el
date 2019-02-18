@@ -1,19 +1,14 @@
 (use-package lsp-mode
-  :ensure t)
+  :commands lsp
+  :ensure t
+  :init
+  (setq lsp-clients-php-server-command
+`("php" ,(expand-file-name "~/.emacs.d/php-language-server/vendor/bin/php-language-server.php"))
+        )
+  )
 
 (use-package lsp-ui
   :ensure t
   :hook (lsp-mode . lsp-ui-mode))
-
-(use-package lsp-php
-  :ensure t
-  :demand
-  :hook (
-         (php-mode . lsp-mode)
-         (php-mode . lsp-php-enable)
-         )
-  :config
-  (setq lsp-php-show-file-parse-notifications t)
-  )
 
 (provide 'lsp-config)

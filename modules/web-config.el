@@ -18,7 +18,6 @@
   ("C-x t" . geben-add-current-line-to-predefined-breakpoints)
   
   :config
-  (setq geben-path-mappings '(("/home/fabsor/projects/leanlab-docker" "/app")))
   (setq geben-dbgp-default-port 9000)
   (setq geben-pause-at-entry-line nil)
   (setq geben-show-redirect-buffers nil)
@@ -56,25 +55,32 @@
     (tide-setup)
     (flycheck-mode +1)
     (setq flycheck-check-syntax-automatically '(save mode-enabled))
+    (flycheck-add-next-checker 'typescript-tide '(t . typescript-tslint) 'append)    
     (eldoc-mode +1)
+    (global-set-key (kbd "M-RET"), 'tide-fix)
     (tide-hl-identifier-mode +1)
     ;; company is an optional dependency. You have to
     ;; install it separately via package-install
     ;; `M-x package-install [ret] company`
     (company-mode +1))
+
   (require 'web-mode)
   (add-hook 'web-mode-hook
             (lambda ()
-              (when (string-equal "tsx" (file-name-extension buffer-file-name))
-                (setup-tide-mode))))
+              (when
+                  (string-equal "tsx" (file-name-extension buffer-file-name))
+                (setup-tide-mode)
+                )))
   (add-hook 'web-mode-hook
             (lambda ()
               (when (string-equal "ts" (file-name-extension buffer-file-name))
-                (setup-tide-mode))))
+                (setup-tide-mode)
+
+                )))
   
   ;; enable typescript-tslint checker
-  (flycheck-add-mode 'typescript-tslint 'web-mode)
   ;; aligns annotation to the right hand side
+  (flycheck-add-mode 'typescript-tslint 'web-mode)
   (setq company-tooltip-align-annotations t)
 )
 (provide 'web-config)

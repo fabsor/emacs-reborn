@@ -11,4 +11,8 @@
   :ensure t
   :init (global-flycheck-mode))
 
+(use-package evil
+  :ensure t
+)
+
 (provide 'editor-config)
