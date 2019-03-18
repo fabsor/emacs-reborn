@@ -110,7 +110,6 @@
 (require 'editor-config)
 (require 'drupal-config)
 (require 'lang-config)
-(require 'slack-config)
 (require 'lsp-config)
 
 (server-start)
