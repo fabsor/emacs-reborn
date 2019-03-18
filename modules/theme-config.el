@@ -1,10 +1,10 @@
 (require 'use-package)
 
-(use-package color-theme-sanityinc-tomorrow
+(use-package material-theme
   :ensure t
   :config
   (when (display-graphic-p)
-      (load-theme 'sanityinc-tomorrow-bright t)
+      (load-theme 'material t)
   ))
 (provide 'theme-config)
 

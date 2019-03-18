@@ -110,6 +110,8 @@
 (require 'editor-config)
 (require 'drupal-config)
 (require 'lang-config)
+(require 'slack-config)
+(require 'lsp-config)
 
 (server-start)
 ;; No toolbar
@@ -118,6 +120,10 @@
 (scroll-bar-mode -1)
 ;; No menu bar
 (menu-bar-mode -1)
+
+;; Global keybidnings
+(global-set-key (kbd "C-x C-r") 'replace-string)
+
 
 (setq split-height-threshold nil)
 (setq split-width-threshold 0)
@@ -129,6 +135,8 @@
 (setq mac-command-key-is-meta t)
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier nil)
+(setq visible-bell  t)
+(setq kill-buffer-query-functions (delq 'process-kill-buffer-query-function kill-buffer-query-functions))
 
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . dark))
@@ -139,15 +147,14 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("0c32e4f0789f567a560be625f239ee9ec651e524e46a4708eb4aba3b9cdc89c5" default)))
+    ("a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" "350dc341799fbbb81e59d1e6fff2b2c8772d7000e352a5c070aa4317127eee94" "196df8815910c1a3422b5f7c1f45a72edfa851f6a1d672b7b727d9551bb7c7ba" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" default)))
  '(package-selected-packages
    (quote
-    (lsp-php lsp-ui lsp-mode dockerfile-mode yaml-mode zenburn-theme web-mode use-package projectile-ripgrep php-mode material-theme magit flycheck editorconfig dracula-theme counsel company))))
+    (ggtags company-anaconda anaconda-mode material-theme snazzy-theme lsp-php lsp-ui lsp-mode slack color-theme-sanityinc-tomorrow ivy-pass yaml-mode web-mode use-package tide ripgrep projectile php-mode markdown-mode magit geben evil editorconfig dockerfile-mode counsel company)))
+ '(php-mode-coding-style (quote drupal)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-;;; Init ends here

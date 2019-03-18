@@ -15,6 +15,11 @@
   (global-set-key "\C-s" 'swiper)
   )
 
+(use-package ivy-pass
+  :ensure t
+  )
+
+
 (use-package counsel
   :ensure t
   :config
