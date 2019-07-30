@@ -29,18 +29,38 @@
   (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.tsx$" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.ts$" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.js$" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.tpl.php$" . web-mode))
-
+  ;; (defun web-mode-styled-component-indentation (pos &optional prefix)
+  ;; (unless prefix (setq prefix "relayql"))
+  ;; (let (beg offset level char)
+  ;;   (setq char (char-after))
+  ;;   (setq beg (web-mode-part-token-beginning-position pos))
+  ;;   (goto-char beg)
+  ;;   (cond
+  ;;    ((member char '(?\`))
+  ;;     (setq offset (current-indentation))
+  ;;     )
+  ;;    ((member char '(?\) ?\} ?\]))
+  ;;     (web-mode-go (web-mode-token-opening-paren-position pos beg prefix))
+  ;;     (setq offset (current-indentation))
+  ;;     )
+  ;;    ((setq level (web-mode-bracket-level pos beg))
+  ;;     (setq offset (+ level web-mode-code-indent-offset))
+  ;;     )
+  ;;    (t
+  ;;     (setq offset (+ (current-indentation) web-mode-code-indent-offset))
+  ;;     )
+  ;;    )
+  ;;   offset))
+  
   (defun my-web-mode-hook ()
-  "Hooks for Web mode."
-  (setq web-mode-code-indent-offset 2)
-  (setq web-mode-css-indent-offset 2)
-  (setq web-mode-markup-indent-offset 2)
-  (setq web-mode-enable-auto-quoting nil)
-  (setq web-mode-jsx-depth-faces nil)
-  (setq web-mode-enable-block-face nil)
-  )
+    "Hooks for Web mode."
+    (setq web-mode-code-indent-offset 2)
+    (setq web-mode-css-indent-offset 2)
+    (setq web-mode-markup-indent-offset 2)
+    (setq web-mode-enable-auto-quoting nil)
+    (setq web-mode-jsx-depth-faces nil)
+    (setq web-mode-enable-block-face nil))
   (add-hook 'web-mode-hook  'my-web-mode-hook)
 
   )
@@ -77,6 +97,14 @@
                 (setup-tide-mode)
 
                 )))
+
+  (add-hook 'web-mode-hook
+            (lambda ()
+              (when (string-equal "js" (file-name-extension buffer-file-name))
+                (setup-tide-mode)
+
+                )))
+
   
   ;; enable typescript-tslint checker
   ;; aligns annotation to the right hand side
