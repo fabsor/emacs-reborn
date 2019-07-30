@@ -1,6 +1,6 @@
 (defun drush (command)
   (interactive "scommand:")
-  (setq command (format "lando drush %s" command))
+  (setq command (format "fab drush '%s'" command))
   (async-shell-command command))
 
 (defun cache-clear ()
