@@ -3,11 +3,11 @@
 (use-package solarized-theme
   :ensure t
 )
-(use-package monokai-pro-theme
+(use-package atom-one-dark-theme
   :ensure t
   :config
   (when (display-graphic-p)
-      (load-theme 'monokai-pro t)
+      (load-theme 'atom-one-dark t)
       ))
 (defun light ()
   (interactive)
@@ -15,7 +15,7 @@
 
 (defun dark ()
   (interactive)
-  (load-theme 'monokai-pro t))
+  (load-theme 'atom-one-dark t))
 
 (provide 'theme-config)
 

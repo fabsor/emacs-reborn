@@ -12,6 +12,7 @@
   (add-to-list 'auto-mode-alist '("\\.engine$" . php-mode))
   )
 
+
 (use-package geben
   :ensure t
   :bind
@@ -28,7 +29,6 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.tsx$" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.ts$" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.tpl.php$" . web-mode))
   ;; (defun web-mode-styled-component-indentation (pos &optional prefix)
   ;; (unless prefix (setq prefix "relayql"))
@@ -61,6 +61,7 @@
     (setq web-mode-enable-auto-quoting nil)
     (setq web-mode-jsx-depth-faces nil)
     (setq web-mode-enable-block-face nil))
+  (setq web-mode-enable-auto-indentation nil)  
   (add-hook 'web-mode-hook  'my-web-mode-hook)
 
   )
@@ -75,7 +76,7 @@
     (tide-setup)
     (flycheck-mode +1)
     (setq flycheck-check-syntax-automatically '(save mode-enabled))
-    (flycheck-add-next-checker 'typescript-tide '(t . typescript-tslint) 'append)    
+    ;;(flycheck-add-next-checker 'typescript-tide '(t . typescript-tslint) 'append)    
     (eldoc-mode +1)
     (global-set-key (kbd "M-RET"), 'tide-fix)
     (tide-hl-identifier-mode +1)
@@ -91,12 +92,6 @@
                   (string-equal "tsx" (file-name-extension buffer-file-name))
                 (setup-tide-mode)
                 )))
-  (add-hook 'web-mode-hook
-            (lambda ()
-              (when (string-equal "ts" (file-name-extension buffer-file-name))
-                (setup-tide-mode)
-
-                )))
 
   (add-hook 'web-mode-hook
             (lambda ()
@@ -110,5 +105,30 @@
   ;; aligns annotation to the right hand side
   (flycheck-add-mode 'typescript-tslint 'web-mode)
   (setq company-tooltip-align-annotations t)
+  )
+
+(use-package typescript-mode
+  :ensure t
+  :config
+  (defun setup-tide-mode ()
+    (interactive)
+    (tide-setup)
+    (flycheck-mode +1)
+    (setq flycheck-check-syntax-automatically '(save mode-enabled))
+    (eldoc-mode +1)
+    (tide-hl-identifier-mode +1)
+    ;; company is an optional dependency. You have to
+    ;; install it separately via package-install
+    ;; `M-x package-install [ret] company`
+    (company-mode +1))
+  
+  ;; aligns annotation to the right hand side
+  (setq company-tooltip-align-annotations t)
+  
+  ;; formats the buffer before saving
+  (add-hook 'before-save-hook 'tide-format-before-save)
+
+  (add-hook 'typescript-mode-hook #'setup-tide-mode)  
 )
+
 (provide 'web-config)
