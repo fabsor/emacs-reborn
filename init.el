@@ -138,3 +138,20 @@
 (setq kill-buffer-query-functions (delq 'process-kill-buffer-query-function kill-buffer-query-functions))
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . dark))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("dcdd1471fde79899ae47152d090e3551b889edf4b46f00df36d653adc2bf550d" "669e02142a56f63861288cc585bee81643ded48a19e36bfdf02b66d745bcc626" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" "0dd2666921bd4c651c7f8a724b3416e95228a13fca1aa27dc0022f4e023bf197" "b73a23e836b3122637563ad37ae8c7533121c2ac2c8f7c87b381dd7322714cd0" default)))
+ '(package-selected-packages
+   (quote
+    (one-themes cider yaml-mode which-key web-mode use-package tide solarized-theme rust-mode rjsx-mode ripgrep projectile nova-theme nord-theme monokai-pro-theme material-theme magit lsp-ui ivy-pass ggtags geben evil elfeed editorconfig dumb-jump drupal-mode dracula-theme dockerfile-mode dap-mode counsel company-lsp company-anaconda coffee-mode atom-one-dark-theme))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
