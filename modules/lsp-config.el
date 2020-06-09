@@ -14,7 +14,7 @@
   (dap-mode 1)
   (dap-ui-mode 1)
   (dap-tooltip-mode 1)
-  (tooltip-mode 1)
+  (tooltip-mode 1))
 
 (use-package lsp-mode
   :commands lsp
