@@ -1,5 +1,14 @@
 (require 'use-package)
 
+(use-package flycheck-phpstan
+  :ensure t
+  :config
+  (defun php-stan-init ()
+    "Phpstan init."
+    (require 'flycheck-phpstan)
+    (flycheck-mode t))
+  (add-hook 'php-mode-hook 'phpstan-init))
+
 (use-package php-mode
   :ensure t
   :config

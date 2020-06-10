@@ -13,22 +13,19 @@
   (require 'dap-php)
   (dap-mode 1)
   (dap-ui-mode 1)
+  (setq lsp-enable-file-watchers t)
+  (setq lsp-file-watch-threshold 1000000)
+  (setq lsp-intelephense-files-associations '("*.php" "*.phptml" "*.module" "*.inc"))
   (dap-tooltip-mode 1)
-  (tooltip-mode 1)
+  (tooltip-mode 1))
 
-(use-package lsp-mode
-  :commands lsp
-  :ensure t
-  :init
-  (add-hook 'php-mode-hook #'lsp)
-  )
+ (use-package lsp-mode
+   :commands lsp
+   :ensure t
+   :init
+   (add-hook 'php-mode-hook #'lsp)
+   )
 
-(use-package company-lsp
-  :ensure t
-  :commands company-lsp
-  :init
-  (push 'company-lsp company-backends)
-  )
 
 
 (provide 'lsp-config)

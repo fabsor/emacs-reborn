@@ -97,6 +97,7 @@
 
 ;; use shift + arrow keys to switch between visible buffers
 (require 'windmove)
+
 (windmove-default-keybindings)
 
 (setq inhibit-startup-screen t)
@@ -112,6 +113,7 @@
 (require 'lang-config)
 (require 'lsp-config)
 
+(load "~/.emacs.d/local")
 (server-start)
 ;; No toolbar
 (tool-bar-mode -1)
@@ -138,3 +140,5 @@
 (setq kill-buffer-query-functions (delq 'process-kill-buffer-query-function kill-buffer-query-functions))
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . dark))
+
+(defun risky-local-variable-p (sym &optional _ignored) nil)
