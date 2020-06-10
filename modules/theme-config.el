@@ -1,22 +1,27 @@
 (require 'use-package)
 
-(use-package solarized-theme
-  :ensure t
-)
-(use-package atom-one-dark-theme
+(use-package zenburn-theme
+  :ensure t)
+
+(use-package one-themes
   :ensure t
   :config
+  (if (display-graphic-p)
+    (progn
+    ;; if graphic
+      (load-theme 'one-dark t))
+    ;; else (optional)
+    (load-theme 'zenburn t))
   (when (display-graphic-p)
-      (load-theme 'atom-one-dark t)
+
       ))
 (defun light ()
   (interactive)
-  (load-theme 'solarized-light t))
+  (load-theme 'one-light t))
 
 (defun dark ()
   (interactive)
-  (load-theme 'atom-one-dark t))
+  (load-theme 'one-dark t))
 
 (provide 'theme-config)
-
 
