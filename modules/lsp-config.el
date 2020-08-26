@@ -23,7 +23,19 @@
    :commands lsp
    :ensure t
    :init
+   (require 'web-mode)
    (add-hook 'php-mode-hook #'lsp)
+   (add-hook 'web-mode-hook
+            (lambda ()
+              (when
+                  (string-equal "vue" (file-name-extension buffer-file-name))
+                (lsp)
+                
+
+                )))
+   :config
+   (setq lsp-ui-sideline-show-diagnostics nil)
+   
    )
 
 

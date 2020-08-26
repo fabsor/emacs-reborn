@@ -38,6 +38,7 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.tsx$" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.vue$" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.tpl.php$" . web-mode))
   ;; (defun web-mode-styled-component-indentation (pos &optional prefix)
   ;; (unless prefix (setq prefix "relayql"))
@@ -85,7 +86,6 @@
     (tide-setup)
     (flycheck-mode +1)
     (setq flycheck-check-syntax-automatically '(save mode-enabled))
-    ;;(flycheck-add-next-checker 'typescript-tide '(t . typescript-tslint) 'append)    
     (eldoc-mode +1)
     (global-set-key (kbd "M-RET"), 'tide-fix)
     (tide-hl-identifier-mode +1)
@@ -95,6 +95,7 @@
     (company-mode +1))
 
   (require 'web-mode)
+  
   (add-hook 'web-mode-hook
             (lambda ()
               (when
@@ -109,10 +110,7 @@
 
                 )))
 
-  
-  ;; enable typescript-tslint checker
   ;; aligns annotation to the right hand side
-  (flycheck-add-mode 'typescript-tslint 'web-mode)
   (setq company-tooltip-align-annotations t)
   )
 
@@ -135,7 +133,7 @@
   (setq company-tooltip-align-annotations t)
   
   ;; formats the buffer before saving
-  (add-hook 'before-save-hook 'tide-format-before-save)
+  ;;(add-hook 'before-save-hook 'tide-format-before-save)
 
   (add-hook 'typescript-mode-hook #'setup-tide-mode)  
 )

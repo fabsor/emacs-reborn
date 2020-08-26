@@ -55,6 +55,7 @@
 ;; delete the selection with a keypress
 (delete-selection-mode t)
 
+(setq create-lockfiles nil)
 ;; store all backup and autosave files in the tmp dir
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
