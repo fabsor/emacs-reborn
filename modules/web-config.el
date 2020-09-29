@@ -39,30 +39,7 @@
   (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.tsx$" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.vue$" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.tpl.php$" . web-mode))
-  ;; (defun web-mode-styled-component-indentation (pos &optional prefix)
-  ;; (unless prefix (setq prefix "relayql"))
-  ;; (let (beg offset level char)
-  ;;   (setq char (char-after))
-  ;;   (setq beg (web-mode-part-token-beginning-position pos))
-  ;;   (goto-char beg)
-  ;;   (cond
-  ;;    ((member char '(?\`))
-  ;;     (setq offset (current-indentation))
-  ;;     )
-  ;;    ((member char '(?\) ?\} ?\]))
-  ;;     (web-mode-go (web-mode-token-opening-paren-position pos beg prefix))
-  ;;     (setq offset (current-indentation))
-  ;;     )
-  ;;    ((setq level (web-mode-bracket-level pos beg))
-  ;;     (setq offset (+ level web-mode-code-indent-offset))
-  ;;     )
-  ;;    (t
-  ;;     (setq offset (+ (current-indentation) web-mode-code-indent-offset))
-  ;;     )
-  ;;    )
-  ;;   offset))
-  
+  (add-to-list 'auto-mode-alist '("\\.tpl.php$" . web-mode))  
   (defun my-web-mode-hook ()
     "Hooks for Web mode."
     (setq web-mode-code-indent-offset 2)
@@ -135,7 +112,24 @@
   ;; formats the buffer before saving
   ;;(add-hook 'before-save-hook 'tide-format-before-save)
 
-  (add-hook 'typescript-mode-hook #'setup-tide-mode)  
-)
+  (add-hook 'typescript-mode-hook #'setup-tide-mode)
+  )
+
+(use-package prettier
+  :ensure t
+  :config
+  (add-hook 'typescript-mode-hook #'global-prettier-mode)
+  (add-hook 'web-mode-hook
+            (lambda ()
+              (when
+                  (member
+                   (file-name-extension buffer-file-name)
+                   '("jsx" "tsx" "vue"))
+                (display-message-or-buffer "Starting")
+                (global-prettier-mode)                
+                )))
+
+  )
+  
 
 (provide 'web-config)
