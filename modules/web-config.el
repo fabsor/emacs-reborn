@@ -118,7 +118,7 @@
 (use-package prettier
   :ensure t
   :config
-  (add-hook 'typescript-mode-hook #'global-prettier-mode)
+  (add-hook 'typescript-mode-hook (lambda () (prettier-mode +1)))
   (add-hook 'web-mode-hook
             (lambda ()
               (when
@@ -126,7 +126,7 @@
                    (file-name-extension buffer-file-name)
                    '("jsx" "tsx" "vue"))
                 (display-message-or-buffer "Starting")
-                (global-prettier-mode)                
+                (prettier-mode +1)                
                 )))
 
   )
