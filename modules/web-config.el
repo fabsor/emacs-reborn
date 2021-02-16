@@ -61,13 +61,13 @@
   :init
   ;; (setq tide-node-executable "/usr/local/bin/node")
   :config
+
   (defun setup-tide-mode ()
     (interactive)
     (tide-setup)
     (flycheck-mode +1)
     (setq flycheck-check-syntax-automatically '(save mode-enabled))
     (eldoc-mode +1)
-    (global-set-key (kbd "M-RET"), 'tide-fix)
     (tide-hl-identifier-mode +1)
     ;; company is an optional dependency. You have to
     ;; install it separately via package-install
@@ -75,7 +75,8 @@
     (company-mode +1))
 
   (require 'web-mode)
-  
+  (require 'tide)
+  (global-set-key (kbd "C-c f") 'tide-fix)  
   (add-hook 'web-mode-hook
             (lambda ()
               (when
