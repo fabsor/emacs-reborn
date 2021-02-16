@@ -1,14 +1,5 @@
 (require 'use-package)
 
-(use-package flycheck-phpstan
-  :ensure t
-  :config
-  (defun php-stan-init ()
-    "Phpstan init."
-    (require 'flycheck-phpstan)
-    (flycheck-mode t))
-  (add-hook 'php-mode-hook 'phpstan-init))
-
 (use-package php-mode
   :ensure t
   :config
@@ -21,6 +12,16 @@
   (add-to-list 'auto-mode-alist '("\\.engine$" . php-mode))
   )
 
+(use-package flycheck-phpstan
+  :ensure t
+  :config
+  (defun my-php-mode-setup ()
+    "My PHP-mode hook."
+    (require 'flycheck-phpstan)
+    (flycheck-mode t))
+  
+  (add-hook 'php-mode-hook 'my-php-mode-setup)
+  )
 
 (use-package geben
   :ensure t
@@ -39,7 +40,9 @@
   (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.tsx$" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.vue$" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.tpl.php$" . web-mode))  
+  (add-to-list 'auto-mode-alist '("\\.tpl.php$" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.blade.php$" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.html$" . web-mode))
   (defun my-web-mode-hook ()
     "Hooks for Web mode."
     (setq web-mode-code-indent-offset 2)
@@ -48,7 +51,7 @@
     (setq web-mode-enable-auto-quoting nil)
     (setq web-mode-jsx-depth-faces nil)
     (setq web-mode-enable-block-face nil))
-  (setq web-mode-enable-auto-indentation nil)  
+  (setq web-mode-enable-auto-indentation nil)
   (add-hook 'web-mode-hook  'my-web-mode-hook)
 
   )
