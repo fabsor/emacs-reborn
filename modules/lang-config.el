@@ -9,16 +9,9 @@
 (use-package markdown-mode
   :ensure t)
 
-(use-package company-anaconda
-  :config  
-  (eval-after-load "company"
-    '(add-to-list 'company-backends 'company-anaconda))
-  :ensure t)
-
-(use-package anaconda-mode
+(use-package elpy
   :config
-  (add-hook 'python-mode-hook 'anaconda-mode)
-  (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+  (setq elpy-rpc-python-command "python3")
   :ensure t)
 
 (use-package rjsx-mode
