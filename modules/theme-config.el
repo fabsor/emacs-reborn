@@ -11,7 +11,7 @@
     ;; if graphic
       (load-theme 'doom-moonlight t))
     ;; else (optional)
-    (load-theme 'doom-zenburn t))
+    (load-theme 'zenburn t))
   (when (display-graphic-p)
 
       ))
@@ -26,7 +26,7 @@
     ;; if graphic
       (load-theme 'doom-moonlight t))
     ;; else (optional)
-    (load-theme 'doom-zenburn t))
+    (load-theme 'zenburn t))
 )
 (provide 'theme-config)
 
