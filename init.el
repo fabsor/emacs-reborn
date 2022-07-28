@@ -103,6 +103,9 @@
 
 (setq inhibit-startup-screen t)
 
+;; Strip whitespace on save.
+(add-hook 'after-save-hook #'delete-trailing-whitespace)
+
 (require 'ivy-config)
 (require 'magit-config)
 (require 'web-config)

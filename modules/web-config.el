@@ -12,37 +12,38 @@
   (add-to-list 'auto-mode-alist '("\\.engine$" . php-mode))
   )
 
-(use-package flycheck-phpstan
-  :ensure t
-  :config
-  (defun my-php-mode-setup ()
-    "My PHP-mode hook."
-    (require 'flycheck-phpstan)
-    (flycheck-mode t))
-  
-  (add-hook 'php-mode-hook 'my-php-mode-setup)
-  )
+;; (use-package flycheck-phpstan
+;;   :ensure t
+;;   :config
+;;   (defun my-php-mode-setup ()
+;;     "My PHP-mode hook."
+;;     (require 'flycheck-phpstan)
+;;     (flycheck-mode t))
 
-(use-package geben
+;;   (add-hook 'php-mode-hook 'my-php-mode-setup)
+;;   )
+
+(use-package add-node-modules-path
   :ensure t
-  :bind
-  ("C-x t" . geben-add-current-line-to-predefined-breakpoints)
-  
   :config
-  (setq geben-dbgp-default-port 9000)
-  (setq geben-pause-at-entry-line nil)
-  (setq geben-show-redirect-buffers nil)
-  )
-  
+  ;; automatically run the function when web-mode starts
+  (eval-after-load 'web-mode
+    '(add-hook 'web-mode-hook 'add-node-modules-path)))
+
+
 (use-package web-mode
   :ensure t
+  :after (add-node-modules-path)
   :config
+  (require 'flycheck)
   (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.js$" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.tsx$" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.vue$" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.tpl.php$" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.blade.php$" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.html$" . web-mode))
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
   (defun my-web-mode-hook ()
     "Hooks for Web mode."
     (setq web-mode-code-indent-offset 2)
@@ -50,18 +51,18 @@
     (setq web-mode-markup-indent-offset 2)
     (setq web-mode-enable-auto-quoting nil)
     (setq web-mode-jsx-depth-faces nil)
-    (setq web-mode-enable-block-face nil))
-  (setq web-mode-enable-auto-indentation nil)
-  (add-hook 'web-mode-hook  'my-web-mode-hook)
-
-  )
+    (setq web-mode-enable-block-face nil)
+    (if (equal web-mode-content-type "javascript")
+        (web-mode-set-content-type "jsx"))
+    (if (equal web-mode-content-type "jsx")
+        (flycheck-add-mode 'jsx-tide 'web-mode))
+    (setq web-mode-enable-auto-indentation nil))
+  (add-hook 'web-mode-hook  'my-web-mode-hook))
 
 (use-package tide
   :ensure t
-  :init
-  ;; (setq tide-node-executable "/usr/local/bin/node")
   :config
-
+  (flycheck-add-next-checker 'tsx-tide 'javascript-eslint)
   (defun setup-tide-mode ()
     (interactive)
     (tide-setup)
@@ -76,7 +77,7 @@
 
   (require 'web-mode)
   (require 'tide)
-  (global-set-key (kbd "C-c f") 'tide-fix)  
+  (global-set-key (kbd "C-c f") 'tide-fix)
   (add-hook 'web-mode-hook
             (lambda ()
               (when
@@ -97,6 +98,7 @@
 
 (use-package typescript-mode
   :ensure t
+  :after (add-node-modules-path)
   :config
   (defun setup-tide-mode ()
     (interactive)
@@ -109,10 +111,10 @@
     ;; install it separately via package-install
     ;; `M-x package-install [ret] company`
     (company-mode +1))
-  
+
   ;; aligns annotation to the right hand side
   (setq company-tooltip-align-annotations t)
-  
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
   ;; formats the buffer before saving
   ;;(add-hook 'before-save-hook 'tide-format-before-save)
 
@@ -128,12 +130,12 @@
               (when
                   (member
                    (file-name-extension buffer-file-name)
-                   '("jsx" "tsx" "vue"))
+                   '("jsx" "tsx" "js" "vue" "ts"))
                 (display-message-or-buffer "Starting")
-                (prettier-mode +1)                
+                (prettier-mode +1)
                 )))
 
   )
-  
+
 
 (provide 'web-config)
