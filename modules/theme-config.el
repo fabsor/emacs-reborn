@@ -6,26 +6,14 @@
 (use-package doom-themes
   :ensure t
   :config
-  (if (display-graphic-p)
-    (progn
-    ;; if graphic
-      (load-theme 'doom-challenger-deep t))
-    ;; else (optional)
-    (load-theme 'zenburn t))
-  (when (display-graphic-p)
+  (load-theme 'doom-challenger-deep t))
 
-      ))
 (defun light ()
   (interactive)
   (load-theme 'doom-opera-light t))
 
 (defun dark ()
   (interactive)
-  (if (display-graphic-p)
-    (progn
-    ;; if graphic
-      (load-theme 'doom-challenger-deep t))
-    ;; else (optional)
-    (load-theme 'zenburn t))
-)
+  (load-theme 'doom-challenger-deep t))
+
 (provide 'theme-config)

@@ -7,6 +7,8 @@
   :ensure t)
 
 (use-package markdown-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.mdx$" . markdown-mode))
   :ensure t)
 
 (use-package pipenv
