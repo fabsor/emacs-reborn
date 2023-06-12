@@ -35,6 +35,7 @@
     (flycheck-add-next-checker 'lsp 'phpstan))
   (add-hook 'lsp-after-open-hook  'php-lsp-flycheck)
   (setq lsp-file-watch-threshold 10000000)
+  (setq lsp-intelephense-licence-key "00IXYCU0ORI7RQ7")
   (setq lsp-intelephense-files-associations ["*.php" "*.phtml" "*.module" "*.inc"]))
 
 
