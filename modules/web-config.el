@@ -12,6 +12,10 @@
   (add-to-list 'auto-mode-alist '("\\.engine$" . php-mode))
   )
 
+(use-package phpunit
+  :ensure t
+  )
+
 ;; (use-package flycheck-phpstan
 ;;   :ensure t
 ;;   :config
@@ -100,6 +104,7 @@
   :ensure t
   :after (add-node-modules-path)
   :config
+
   (defun setup-tide-mode ()
     (interactive)
     (tide-setup)
