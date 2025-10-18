@@ -111,11 +111,8 @@
 (require 'ivy-config)
 (require 'magit-config)
 (require 'web-config)
-(require 'projectile-config)
-(require 'start-project)
 (require 'theme-config)
 (require 'editor-config)
-(require 'drupal-config)
 (require 'lang-config)
 (require 'lsp-config)
 
