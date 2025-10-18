@@ -6,7 +6,7 @@
 (use-package doom-themes
   :ensure t
   :config
-  (load-theme 'doom-challenger-deep t))
+  (load-theme 'doom-vibrant t))
 
 (defun light ()
   (interactive)
@@ -14,6 +14,6 @@
 
 (defun dark ()
   (interactive)
-  (load-theme 'doom-challenger-deep t))
+  (load-theme 'doom-vibrant t))
 
 (provide 'theme-config)
