@@ -16,6 +16,8 @@
     (add-to-list 'package-archives '("gnu" . (concat proto "://elpa.gnu.org/packages/")))))
 (package-initialize)
 
+(when (not (package-installed-p 'exec-path-from-shell))
+  (package-install 'exec-path-from-shell))
 (exec-path-from-shell-initialize)
 
 (when (not package-archive-contents)
